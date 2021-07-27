@@ -66,12 +66,16 @@ Route::apiResource('subareas.cpoints', SubAreaCollectionPointController::class)-
 Route::apiResource('cpoints', CollectionPointController::class)->only(['show', 'update', 'destroy']);
 
 /**
- * Collection
+ * Daily Collection
  */
 
 /**
  * Collection Request
  */
+
+ /**
+  * Duty
+  */
 
 
 

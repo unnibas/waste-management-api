@@ -6,10 +6,16 @@ use App\Http\Controllers\ApiController;
 use App\Http\Controllers\Controller;
 use App\Models\Area;
 use App\Models\SubArea;
+use App\Transformers\SubAreaTransformer;
 use Illuminate\Http\Request;
 
 class AreaSubAreaController extends ApiController
 {
+    public function __construct()
+    {
+        parent:: __construct();
+        $this->middleware('transform.input:'. SubAreaTransformer::class)->only(['store']);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -34,7 +40,7 @@ class AreaSubAreaController extends ApiController
         $rules = [
             'name' => 'required',
             'nick_name' => 'required',
-            'logo_url' =>'image',
+            'logo_url' =>'image|required',
             'description' => 'required'
         ];
 

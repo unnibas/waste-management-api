@@ -5,10 +5,16 @@ namespace App\Http\Controllers\SubArea;
 use App\Http\Controllers\ApiController;
 use App\Models\CollectionPoint;
 use App\Models\SubArea;
+use App\Transformers\CollectionPointTransformer;
 use Illuminate\Http\Request;
 
 class SubAreaCollectionPointController extends ApiController
 {
+    public function __construct()
+    {
+        parent:: __construct();
+        $this->middleware('transform.input:' . CollectionPointTransformer::class)->only(['store']);
+    }
     /**
      * Display a listing of the resource.
      *

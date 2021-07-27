@@ -36,27 +36,46 @@ class SubAreaTransformer extends TransformerAbstract
             'identifier' => (int)$subArea->id,
             'name' => (string)$subArea->name,
             'nickName' => (string)$subArea->nick_name,
-            'logoUrl' => (string)$subArea->logo_url,
-            'description' => (string)$subArea->description,
+            'logo_url' => (string)$subArea->logo_url,
+            'details' => (string)$subArea->description,
             'areaId' => (int)$subArea->area_id,
-            'creationDate' => $subArea->created_at,
-            'lastChange' => $subArea->updated_at,
+            'creationDate' => (string)$subArea->created_at,
+            'lastChange' => (string)$subArea->updated_at,
+            'deletedDate' => isset($subArea->deleted_at) ? (string)$subArea->deleted_at : null,
         ];
     }
 
-    public static function originalAttributr($index)
+    public static function originalAttribute($index)
     {
         $attributes = [
             'identifier' => 'id',
             'name' => 'name',
             'nickName' => 'nick_name',
-            'logoUrl' => 'logo_url',
-            'description' => 'description',
+            'logo_url' => 'logo_url',
+            'details' => 'description',
             'areaId' => 'area_id',
             'creationDate' =>'created_at',
             'lastChange' => 'updated_at',
+            'deletedDate' => 'deleted_at'
         ];
         
+        return isset($attributes[$index]) ? $attributes[$index] : null;
+    }
+
+    public static function transformedAttribute($index) 
+    {
+        $attributes = [
+            'id' => 'identifier',
+            'name' => 'name',
+            'nick_name' => 'nickName',
+            'logo_url' => 'logo_url',
+            'description' => 'details',
+            'area_id' => 'areaId',
+            'created_at' => 'creationDate',
+            'updated_at' => 'lastChange',
+            'deleted_at' => 'deletedDate',
+        ];
+
         return isset($attributes[$index]) ? $attributes[$index] : null;
     }
 }

@@ -43,6 +43,9 @@ class CollectionPointTransformer extends TransformerAbstract
             'barcode' => (string)$collectionPoint->barcode,
             'address' => (string)$collectionPoint->address,
             'pincode' => (string)$collectionPoint->pincode,
+            'creationDate' => (string)$collectionPoint->created_at,
+            'lastChange' => (string)$collectionPoint->updated_at,
+            'deletedDate' => isset($collectionPoint->deleted_at) ? (string)$collectionPoint->deleted_at : null,
         ];
     }
 
@@ -54,6 +57,24 @@ class CollectionPointTransformer extends TransformerAbstract
             'latitude' => 'latitude',
             'longitude' => 'longitude',
             'cardId' => 'card_id',
+            'phone' => 'phone',
+            'email' => 'email',
+            'barcode' => 'barcode',
+            'address' => 'address',
+            'pincode' => 'pincode',
+        ];
+
+        return isset($attributes[$index]) ? $attributes[$index] : null;
+    }
+
+    public static function transformedAttribute($index)
+    {
+        $attributes = [
+            'identifier' => 'id',
+            'name' => 'name',
+            'latitude' => 'latitude',
+            'longitude' => 'longitude',
+            'card_id' => 'cardId',
             'phone' => 'phone',
             'email' => 'email',
             'barcode' => 'barcode',
