@@ -72,4 +72,9 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Client::class);
     }
+
+    public function subareas()
+    {
+        return $this->belongsToMany(SubArea::class, 'duties');
+    }
 }

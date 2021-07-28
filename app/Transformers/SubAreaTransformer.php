@@ -42,6 +42,21 @@ class SubAreaTransformer extends TransformerAbstract
             'creationDate' => (string)$subArea->created_at,
             'lastChange' => (string)$subArea->updated_at,
             'deletedDate' => isset($subArea->deleted_at) ? (string)$subArea->deleted_at : null,
+
+            'links' => [
+                [
+                    'rel' => 'self',
+                    'href' => route('subareas.show',$subArea->id),
+                ],
+                [
+                    'rel' => 'subareas.cpoints',
+                    'href' => route('subareas.cpoints.index',$subArea->id),
+                ],
+                [
+                    'rel' => 'subareas.duties',
+                    'href' => route('subareas.duties.index',$subArea->id),
+                ],
+            ],
         ];
     }
 

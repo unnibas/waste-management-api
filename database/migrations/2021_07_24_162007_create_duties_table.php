@@ -16,12 +16,12 @@ class CreateDutiesTable extends Migration
         Schema::create('duties', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('user_id')->unsigned();
-            $table->bigInteger('area_id')->unsigned();
+            $table->bigInteger('sub_area_id')->unsigned();
             $table->timestamps();
             $table->softDeletes();
 
             $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('area_id')->references('id')->on('areas');
+            $table->foreign('sub_area_id')->references('id')->on('sub_areas');
         });
     }
 

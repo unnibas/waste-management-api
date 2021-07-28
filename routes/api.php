@@ -9,7 +9,9 @@ use App\Http\Controllers\Client\ClientUserController;
 use App\Http\Controllers\CollectionPoint\CollectionPointController;
 use App\Http\Controllers\SubArea\SubAreaCollectionPointController;
 use App\Http\Controllers\SubArea\SubAreaController;
+use App\Http\Controllers\SubArea\SubAreaDutyController;
 use App\Http\Controllers\User\UserController;
+use App\Http\Controllers\User\UserDutyController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -29,17 +31,13 @@ Route::post('/login',[AuthController::class,'getToken']);
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('/revoke',[AuthController::class, 'revokeToken']);
-
-    Route::get('test', function (){
-        $user = auth()->user();
-        print_r($user->name);
-    });
 });
 
 /**
  * User
  */
 Route::apiResource('users', UserController::class)->except(['create','edit']);
+Route::apiResource('users.duties', UserDutyController::class)->only(['index','store']);
 
 /**
  * Client
@@ -59,6 +57,7 @@ Route::apiResource('areas.subareas', AreaSubAreaController::class)->only(['index
  */
 Route::apiResource('subareas', SubAreaController::class)->only(['show', 'update', 'destroy']);
 Route::apiResource('subareas.cpoints', SubAreaCollectionPointController::class)->only(['index', 'store']);
+Route::apiResource('subareas.duties', SubAreaDutyController::class)->only(['index', 'store']);
 
 /**
  * Collection point
@@ -73,9 +72,6 @@ Route::apiResource('cpoints', CollectionPointController::class)->only(['show', '
  * Collection Request
  */
 
- /**
-  * Duty
-  */
 
 
 

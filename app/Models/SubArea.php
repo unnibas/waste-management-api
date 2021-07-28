@@ -41,4 +41,9 @@ class SubArea extends Model
     {
         return $this->hasMany(CollectionPoint::class);
     }
+
+    public function users()
+    {
+        return $this->belongsToMany(User::class, 'duties');
+    }
 }
