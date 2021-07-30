@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\Area\AreaController;
 use App\Http\Controllers\Area\AreaSubAreaController;
-use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\Auth\TokenController;
 use App\Http\Controllers\Client\ClientAreaController;
 use App\Http\Controllers\Client\ClientController;
 use App\Http\Controllers\Client\ClientUserController;
@@ -12,6 +12,8 @@ use App\Http\Controllers\SubArea\SubAreaController;
 use App\Http\Controllers\SubArea\SubAreaDutyController;
 use App\Http\Controllers\User\UserController;
 use App\Http\Controllers\User\UserDutyController;
+use App\Models\Client;
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
 
@@ -27,7 +29,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::post('/login',[AuthController::class,'getToken']);
+Route::post('/login',[TokenController::class,'getToken']);
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('/revoke',[AuthController::class, 'revokeToken']);
@@ -72,7 +74,11 @@ Route::apiResource('cpoints', CollectionPointController::class)->only(['show', '
  * Collection Request
  */
 
+Route::get('/test', function () {
+    $client = Client::find(1);
+    $client->users()->syncWithoutDetaching([1,2,3]);
 
+});
 
 
 

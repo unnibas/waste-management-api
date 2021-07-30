@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
 
 
-class AuthController extends Controller
+class TokenController extends Controller
 {
     use ApiResponser;
     /**
