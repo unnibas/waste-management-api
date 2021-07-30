@@ -32,7 +32,7 @@ use Illuminate\Support\Facades\Route;
 Route::post('/login',[TokenController::class,'getToken']);
 
 Route::middleware('auth:sanctum')->group(function () {
-    Route::get('/revoke',[AuthController::class, 'revokeToken']);
+    Route::get('/revoke',[TokenController::class, 'revokeToken']);
 });
 
 /**
