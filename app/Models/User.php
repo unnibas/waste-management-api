@@ -77,4 +77,9 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(SubArea::class, 'duties');
     }
+
+    public function dailyCollections()
+    {
+        return $this->hasMany(DailyCollection::class);
+    }
 }

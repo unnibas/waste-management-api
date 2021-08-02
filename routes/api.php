@@ -7,13 +7,14 @@ use App\Http\Controllers\Client\ClientAreaController;
 use App\Http\Controllers\Client\ClientController;
 use App\Http\Controllers\Client\ClientUserController;
 use App\Http\Controllers\CollectionPoint\CollectionPointController;
+use App\Http\Controllers\CollectionPoint\CollectionPointDailyCollectionController;
+use App\Http\Controllers\DailyCollection\DailyCollectionController;
 use App\Http\Controllers\SubArea\SubAreaCollectionPointController;
 use App\Http\Controllers\SubArea\SubAreaController;
 use App\Http\Controllers\SubArea\SubAreaDutyController;
 use App\Http\Controllers\User\UserController;
+use App\Http\Controllers\User\UserDailyCollectionController;
 use App\Http\Controllers\User\UserDutyController;
-use App\Models\Client;
-use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
 
@@ -40,6 +41,7 @@ Route::middleware('auth:sanctum')->group(function () {
  */
 Route::apiResource('users', UserController::class)->except(['create','edit']);
 Route::apiResource('users.duties', UserDutyController::class)->only(['index','store']);
+Route::apiResource('users.collections', UserDailyCollectionController::class)->only(['index']);
 
 /**
  * Client
@@ -65,20 +67,18 @@ Route::apiResource('subareas.duties', SubAreaDutyController::class)->only(['inde
  * Collection point
  */
 Route::apiResource('cpoints', CollectionPointController::class)->only(['show', 'update', 'destroy']);
+Route::apiResource('cpoints.collections', CollectionPointDailyCollectionController::class)->only(['index']);
 
 /**
  * Daily Collection
  */
+Route::apiResource('collections', DailyCollectionController::class)->only(['store', 'show']);
 
 /**
  * Collection Request
  */
 
-Route::get('/test', function () {
-    $client = Client::find(1);
-    $client->users()->syncWithoutDetaching([1,2,3]);
 
-});
 
 
 

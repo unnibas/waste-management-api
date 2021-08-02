@@ -32,7 +32,7 @@ class TokenController extends Controller
                 'email' => ['The provided credentials are incorrect.'],
             ]);
         }
-        $user['token'] = $user->createToken($request->email)->plainTextToken;
+        $user['token'] = $user->createToken($request->email, ['role:collector'])->plainTextToken;
         return $this->showOne($user);
     }
 

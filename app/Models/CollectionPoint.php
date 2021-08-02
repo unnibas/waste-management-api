@@ -41,4 +41,9 @@ class CollectionPoint extends Model
     {
         return $this->belongsTo(SubArea::class);
     }
+
+    public function dailyCollections()
+    {
+        return $this->hasMany(DailyCollection::class);
+    }
 }

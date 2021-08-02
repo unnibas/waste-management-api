@@ -46,11 +46,15 @@ class UserTransformer extends TransformerAbstract
             'links' => [
                 [
                     'rel' => 'self',
-                    'href' => route('users.show',$user->id),
+                    'href' => route('users.show', $user->id),
                 ],
                 [
                     'rel' => 'users.duties',
-                    'href' => route('users.duties.index',$user->id),
+                    'href' => route('users.duties.index', $user->id),
+                ],
+                [
+                    'rel' => 'users.collections',
+                    'href' => route('users.collections.index', $user->id),
                 ] 
             ],
         ];
