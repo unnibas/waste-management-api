@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\ApiController;
-use App\Http\Controllers\Controller;
 use App\Models\SubArea;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -17,7 +16,13 @@ class UserDutyController extends ApiController
      */
     public function index(User $user)
     {
-        return $this->showAll($user->subareas()->get());  
+
+        $areas =  $user->subAreas()->with('area')->get()
+        ->pluck('area')
+        ->unique('id')
+        ->values();
+
+        return $this->showAll($areas);
     }
 
     /**

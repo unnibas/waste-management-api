@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Area;
 
 use App\Http\Controllers\ApiController;
-use App\Http\Controllers\Controller;
 use App\Models\Area;
 use App\Models\SubArea;
 use App\Transformers\SubAreaTransformer;
@@ -16,6 +15,7 @@ class AreaSubAreaController extends ApiController
         parent:: __construct();
         $this->middleware('transform.input:'. SubAreaTransformer::class)->only(['store']);
     }
+
     /**
      * Display a listing of the resource.
      *

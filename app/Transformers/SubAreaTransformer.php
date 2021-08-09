@@ -42,7 +42,6 @@ class SubAreaTransformer extends TransformerAbstract
             'creationDate' => (string)$subArea->created_at,
             'lastChange' => (string)$subArea->updated_at,
             'deletedDate' => isset($subArea->deleted_at) ? (string)$subArea->deleted_at : null,
-
             'links' => [
                 [
                     'rel' => 'self',

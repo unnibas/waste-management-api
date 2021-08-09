@@ -32,6 +32,10 @@ class SubArea extends Model
         'deleted_at' => 'datetime',
     ];
 
+    protected $hidden = [
+        'pivot',
+    ];
+
     public function area()
     {
         return $this->belongsTo(Area::class);

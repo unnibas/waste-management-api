@@ -40,7 +40,7 @@ class UserTransformer extends TransformerAbstract
             'isActive' => (int)$user->isActive(),
             'creationDate' => (string)$user->created_at,
             'lastChange' => (string)$user->updated_at,
-            'deletedData' => (string)$user->deleted_at,
+            'deletedData' => isset($user->deleted_at) ? (string)$user->deleted_at : null,
             'token' => isset($user->token) ? (string)$user->token : null,
 
             'links' => [
