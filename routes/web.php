@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Web\Client\ClientWebController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -28,9 +29,5 @@ Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/clients', function () {
-    return Inertia::render('Client/Client.js');
-})->middleware(['auth', 'verified'])->name('web.clients');
-
-
+Route::resource('webclients', ClientWebController::class)->middleware(['auth', 'verified']);
 require __DIR__.'/auth.php';

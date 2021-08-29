@@ -9,6 +9,7 @@ use App\Http\Controllers\Client\ClientUserController;
 use App\Http\Controllers\CollectionPoint\CollectionPointController;
 use App\Http\Controllers\CollectionPoint\CollectionPointDailyCollectionController;
 use App\Http\Controllers\DailyCollection\DailyCollectionController;
+use App\Http\Controllers\Device\DeviceController;
 use App\Http\Controllers\SubArea\SubAreaCollectionPointController;
 use App\Http\Controllers\SubArea\SubAreaController;
 use App\Http\Controllers\SubArea\SubAreaDutyController;
@@ -28,7 +29,9 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-
+Route::get('/test', function () {
+        print_r('test');
+});
 
 Route::post('/login',[TokenController::class,'getToken']);
 
@@ -77,6 +80,12 @@ Route::apiResource('collections', DailyCollectionController::class)->only(['stor
 /**
  * Collection Request
  */
+
+
+ /**
+  * Device
+  */
+  Route::apiResource('devices', DeviceController::class)->except(['create' ,'edit']);
 
 
 

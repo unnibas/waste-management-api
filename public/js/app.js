@@ -3539,8 +3539,8 @@ function Authenticated(_ref) {
                 active: route().current('dashboard'),
                 children: "Dashboard"
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_Components_NavLink__WEBPACK_IMPORTED_MODULE_2__.default, {
-                href: route('web.clients'),
-                active: route().current('web.clients'),
+                href: route('webclients.index'),
+                active: route().current('webclients.index'),
                 children: "Clients"
               })]
             })]
@@ -3620,8 +3620,8 @@ function Authenticated(_ref) {
             children: "Dashboard"
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_Components_ResponsiveNavLink__WEBPACK_IMPORTED_MODULE_4__.default, {
             method: "post",
-            href: route('web.clients'),
-            active: route().current('web.clients'),
+            href: route('webclients.index'),
+            active: route().current('webclients.index'),
             children: "Clients"
           })]
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
@@ -4345,7 +4345,11 @@ function Client(props) {
           className: "bg-white overflow-hidden shadow-sm sm:rounded-lg",
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
             className: "p-6 bg-white border-b border-gray-200",
-            children: "You're logged in!"
+            children: props.clients.map(function callback(value) {
+              return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("h1", {
+                children: value.name
+              });
+            })
           })
         })
       })
