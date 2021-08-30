@@ -15,18 +15,33 @@ class DeviceController extends Controller
 
     public function __construct()
     {
-        $this->middleware('transform.input:' . DeviceTransformer::class)->only(['store','update']);
+        $this->middleware('transform.input:' . DeviceTransformer::class)->only(['index','store','update']);
     }
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $devices = Device::all();
+        // $devices = Device::all();
 
-        return $this->showAll($devices);
+        // return $this->showAll($devices);
+
+        $rules = [
+            'device_id' => 'required',
+            'time_stamp' => 'required',
+            'device_type' => 'required',
+            'data' => 'required',
+        ];
+
+        $this->validate($request, $rules);
+
+        $data = $request->all();
+
+        $device = Device::create($data);
+
+        return $this->showOne($device);
     }
 
 
